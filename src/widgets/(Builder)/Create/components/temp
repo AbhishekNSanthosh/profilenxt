@@ -1,0 +1,60 @@
+ const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFont("Poppins");
+    doc.setFontSize(20);
+    doc.text(formData.name, 105, 20, { align: "center" });
+    doc.setFontSize(12);
+    doc.text(
+      `${formData.phone} | ${formData.email} | ${formData.linkedin} | ${formData.github}`,
+      105,
+      30,
+      { align: "center" }
+    );
+
+    let y = 50;
+    doc.setFontSize(14);
+    doc.text("Experience", 10, y);
+    doc.setFontSize(12);
+    formData.experience.forEach((exp) => {
+      y += 10;
+      doc.text(`${exp.role} - ${exp.company} (${exp.duration})`, 10, y);
+      y += 5;
+      doc.text(exp.description, 10, y, { maxWidth: 180 });
+    });
+
+    y += 10;
+    doc.setFontSize(14);
+    doc.text("Projects", 10, y);
+    doc.setFontSize(12);
+    formData.projects.forEach((proj) => {
+      y += 10;
+      doc.text(`${proj.name} - ${proj.techStack}`, 10, y);
+      y += 5;
+      doc.text(proj.description, 10, y, { maxWidth: 180 });
+    });
+
+    y += 10;
+    doc.setFontSize(14);
+    doc.text("Education", 10, y);
+    doc.setFontSize(12);
+    formData.education.forEach((edu) => {
+      y += 10;
+      doc.text(`${edu.degree}, ${edu.institution} (${edu.duration})`, 10, y);
+    });
+
+    y += 10;
+    doc.setFontSize(14);
+    doc.text("Technical Skills", 10, y);
+    doc.setFontSize(12);
+    y += 5;
+    doc.text(formData.skills, 10, y, { maxWidth: 180 });
+
+    y += 10;
+    doc.setFontSize(14);
+    doc.text("Additional Information", 10, y);
+    doc.setFontSize(12);
+    y += 5;
+    doc.text(formData.additional, 10, y, { maxWidth: 180 });
+
+    doc.save("resume.pdf");
+  };

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function TempHeader() {
   return (
-    <div className="px-[3vw] flex flex-row items-center justify-between h-[12vh] border-b border-gray-300 text-gray-800">
+    <div className="px-[2vw] flex flex-row items-center justify-between h-[12vh] border-b border-gray-300 text-gray-800">
       <div className="flex-1">
         <Image
           src={"/logo.svg"}
