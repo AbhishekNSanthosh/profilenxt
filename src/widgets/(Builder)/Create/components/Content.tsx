@@ -179,16 +179,98 @@ export default function ResumeBuilder() {
         );
       case "qualifications":
         return (
-          <>
-            <h2 className="text-xl font-bold mb-4">Qualifications</h2>
-            <input
-              name="education"
-              placeholder="Degree, Institution, Duration"
-              value={formData.education[0]?.degree || ""}
-              //   onChange={handleChange}
-              className="p-2 border rounded-md w-full"
-            />
-          </>
+          <div className="w-full flex flex-col items-start gap-5 pb-[10vh]">
+            <div className="flex flex-col items-start gap-4 justify-between w-full">
+              <span className="text-xl font-semibold text-gray-700">
+                Qualification{" "}
+              </span>
+              <div className="flex flex-row items-center gap-2">
+                <span className="">Are you a Student ?</span>
+                <input type="checkbox" className="" />
+              </div>
+            </div>
+            {formData.experience.map((exp, index) => (
+              <div
+                key={index}
+                className={`w-full flex flex-col space-y-3 relative ${
+                  index !== 0 && "mt-[20px]"
+                }`}
+              >
+                <div className="flex w-full flex-col space-y-3 items-center justify-end">
+                  <div className="flex flex-row w-full items-start space-x-3">
+                    <div className="w-full">
+                      <span className="text-sm font-normal">
+                        Organisation name
+                      </span>
+                      <input
+                        type="text"
+                        value={exp.company}
+                        onChange={(e) =>
+                          handleChange(e, index, "company", "experience")
+                        }
+                        className="px-2 w-full py-3 flex-1 outline-none border border-gray-400 rounded-[15px]"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                    <div className="w-full">
+                      <span className="text-sm font-normal">Your role</span>
+                      <input
+                        type="text"
+                        value={exp.role}
+                        onChange={(e) =>
+                          handleChange(e, index, "role", "experience")
+                        }
+                        className="px-2 w-full py-3 flex-1 outline-none border border-gray-400 rounded-[15px]"
+                        placeholder="Role"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-row w-full space-x-3 items-center">
+                    <div className="w-full">
+                      <span className="text-sm font-normal">Duration</span>
+                      <input
+                        type="text"
+                        value={exp.duration}
+                        onChange={(e) =>
+                          handleChange(e, index, "duration", "experience")
+                        }
+                        className="px-2 w-full py-3 flex-1 outline-none border border-gray-400 rounded-[15px]"
+                        placeholder="Duration"
+                      />
+                    </div>
+                    <div className="w-full">
+                      <span className="text-sm font-normal">Location</span>
+                      <input
+                        type="text"
+                        value={exp.duration}
+                        onChange={(e) =>
+                          handleChange(e, index, "duration", "experience")
+                        }
+                        className="px-2 w-full py-3 flex-1 outline-none border border-gray-400 rounded-[15px]"
+                        placeholder="Duration"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {index !== 0 && (
+                  <button
+                    onClick={() => removeRole(index)}
+                    className="text-red-500 absolute bottom-[-50px] right-5 text-xs border border-red-500 self-end py-2 rounded-[15px] w-[5rem] mt-5"
+                  >
+                    Remove
+                  </button>
+                )}
+                {/* {<div className="w-full h-[1px] bg-gray-400 flex mt-5"></div>} */}
+              </div>
+            ))}
+            <button
+              onClick={addRole}
+              className="flex flex-row gap-2 bg-white border border-gray-400 rounded-[15px] text-gray-800 text-sm px-3 py-2"
+            >
+              <CiCirclePlus className="text-xl" />
+              Add more
+            </button>
+          </div>
         );
       case "experience":
         return (
